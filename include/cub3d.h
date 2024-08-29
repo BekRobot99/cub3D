@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 05:10:15 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/29 16:07:03 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_cub
 
 char		*get_next_line(int fd);
 
+void		free_str_array(char *array[]);
 void		cleanup_resources(char *texture_path, char *current_line, int fd);
 int			validate_textures(t_cub *info, int texture_len);
 int			is_valid_txtr_color(char *line);
@@ -62,5 +63,19 @@ int			read_first_line(t_cub *info);
 int			process_lines(t_cub *info, int *texture_count);
 int			load_map_data(char *file_path, t_cub *info, int *texture_len);
 
-int	parse_map_data(t_cub *info, int count);
+int			is_valid_cub_ext(char *filename);
+
+int			parse_map_data(t_cub *info, int count);
+char		*read_map_content(t_cub *info);
+int			validate_txtr_clr_list(char **texture_path, int texture_len);
+int			is_valid_texture_or_color(char *current_line);
+int			verify_element_dup(t_cub *info);
+
+int			check_colors(char **texture_paths);
+int			commas_qntt(char *colors);
+int			is_valid_color_format(char *current_line);
+int			validate_line_content(char *current_line);
+int			check_line_start_validity(char *current_line);
+int			check_and_update_flag(char **current_line, int *flag);
+
 #endif

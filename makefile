@@ -16,7 +16,7 @@
 
 NAME = cub3d
 LIBFT = libft/libft.a
-SRC = src/load_map.c src/map_checking.c
+SRC = src/load_map.c src/map_checking.c src/colors_checking.c
 		  
 CC = cc
 RM = rm -f

@@ -6,11 +6,36 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 04:09:41 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 05:12:56 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/29 16:08:52 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	verify_element_dup(t_cub *info)
+{
+	int	ptr;
+	int	index;
+
+	index = 0;
+	while (info->texture_paths[index])
+	{
+		ptr = index + 1;
+		while (info->texture_paths[ptr])
+		{
+			if (!ft_strncmp(info->texture_paths[index],
+					info->texture_paths[ptr], 2))
+			{
+				ft_putstr_fd("Error : player found more than ones in the map\n",
+					2);
+				return (0);
+			}
+			ptr++;
+		}
+		index++;
+	}
+	return (1);
+}
 
 int	is_valid_texture_or_color(char *current_line)
 {
@@ -43,7 +68,7 @@ int	validate_txtr_clr_list(char **texture_path, int texture_len)
 		return (0);
 	while (index < texture_len)
 	{
-		if (!check_ifvalid(texture_path[index]))
+		if (!is_valid_texture_or_color(texture_path[index]))
 		{
 			ft_putstr_fd("Error : texture or color not found for map element\n",
 				2);
@@ -84,7 +109,8 @@ int	parse_map_data(t_cub *info, int count)
 		return (0);
 	}
 	free(info->raw_map_data);
-	if (!validate_txtr_clr_list(info->texture_paths, count))
+	if (!validate_txtr_clr_list(info->texture_paths, count)
+		|| !verify_element_dup(info) || !check_colors(info->texture_paths))
 	{
 		free_str_array(info->map_grid);
 		return (0);
