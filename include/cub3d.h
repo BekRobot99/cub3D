@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 16:07:03 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/29 17:07:57 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,7 @@ int			validate_line_content(char *current_line);
 int			check_line_start_validity(char *current_line);
 int			check_and_update_flag(char **current_line, int *flag);
 
+int			valid_map_boundaries(char **raw_map_data);
+int			is_boundered_by_walls(char *current_line);
+int			validate_map_line(char *current_line, int *char_count);
 #endif
