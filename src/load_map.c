@@ -6,15 +6,25 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 02:46:04 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 03:37:32 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/29 04:19:53 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+void	free_str_array(char *array[])
+{
+	int	index;
+
+	index = 0;
+	while (array[index])
+		free(array[index++]);
+	free(array);
+}
+
 void	cleanup_resources(char *texture_path, char *current_line, int fd)
 {
-    if (current_line)
+	if (current_line)
 		free(current_line);
 	if (texture_path)
 		free(texture_path);
@@ -94,6 +104,9 @@ int	load_map_data(char *file_path, t_cub *info, int *texture_len)
 	info->texture_paths = ft_split(info->texture_path, '\n');
 	if (!info->texture_paths)
 		return (cleanup_resources(info->texture_path, NULL, info->fd), 0);
+	if (!parse_map_data(info, *texture_len))
+		return (cleanup_resources(info->texture_path, NULL, info->fd),
+			free_str_array(info->texture_paths), 0);
 	return (cleanup_resources(info->texture_path, info->current_line, info->fd),
 		1);
 }

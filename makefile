@@ -14,11 +14,9 @@
 #@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
 
-
-
 NAME = cub3d
 LIBFT = libft/libft.a
-SRC = #  Add sources here
+SRC = src/load_map.c src/map_checking.c
 		  
 CC = cc
 RM = rm -f

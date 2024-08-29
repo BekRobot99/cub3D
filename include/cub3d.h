@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 03:47:20 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/29 05:10:15 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ int			open_file(char *file_path, t_cub *info);
 int			read_first_line(t_cub *info);
 int			process_lines(t_cub *info, int *texture_count);
 int			load_map_data(char *file_path, t_cub *info, int *texture_len);
+
+int	parse_map_data(t_cub *info, int count);
 #endif
