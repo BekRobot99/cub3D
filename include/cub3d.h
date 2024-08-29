@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/28 21:25:22 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/29 03:47:20 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,32 @@
 
 typedef struct s_cub
 {
-	int					fd;
-	int					index;
-	char				**map_grid;
-	int					ppos_x;
-	int					ppos_y;
-	int					map_width;
-	int					map_height;
-	int					nb_lines;
-	int					nb_cols;
-	char				**texture_paths;
-	char				**square_map;
-	char				*texture_path;
-	char				*raw_map_data;
-	char				**rgb;
-	char				**floor_clr;
-	char				**ceiling_clr;
-	char				*current_line;
-}						t_cub;
+	int		fd;
+	int		index;
+	char	**map_grid;
+	int		ppos_x;
+	int		ppos_y;
+	int		map_width;
+	int		map_height;
+	int		nb_lines;
+	int		nb_cols;
+	char	**texture_paths;
+	char	**square_map;
+	char	*texture_path;
+	char	*raw_map_data;
+	char	**rgb;
+	char	**floor_clr;
+	char	**ceiling_clr;
+	char	*current_line;
+}			t_cub;
 
-char					*get_next_line(int fd);
+char		*get_next_line(int fd);
 
+void		cleanup_resources(char *texture_path, char *current_line, int fd);
+int			validate_textures(t_cub *info, int texture_len);
+int			is_valid_txtr_color(char *line);
+int			open_file(char *file_path, t_cub *info);
+int			read_first_line(t_cub *info);
+int			process_lines(t_cub *info, int *texture_count);
+int			load_map_data(char *file_path, t_cub *info, int *texture_len);
 #endif
