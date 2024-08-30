@@ -6,38 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:47:12 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/30 18:40:33 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/30 18:46:35 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	check_vertical_walls(char **raw_map_data)
-{
-	int	col;
-	int	row;
-
-	row = 0;
-	while (raw_map_data[row])
-	{
-		col = 0;
-		while (raw_map_data[row][col])
-		{
-			if (raw_map_data[row][col] != ' ' && raw_map_data[row][col] != '1')
-			{
-				if (raw_map_data[row + 1][col] == ' ' || raw_map_data[row
-					- 1][col] == ' ')
-				{
-					ft_putstr_fd("Error: errors in map in vertical lines\n", 2);
-					return (0);
-				}
-			}
-			col++;
-		}
-		row++;
-	}
-	return (1);
-}
 
 int	check_horizontal_walls(char **raw_map_data)
 {
@@ -56,6 +29,33 @@ int	check_horizontal_walls(char **raw_map_data)
 					- 1] == ' ')
 				{
 					ft_putstr_fd("Error: in horizontal lines in the map\n", 2);
+					return (0);
+				}
+			}
+			col++;
+		}
+		row++;
+	}
+	return (1);
+}
+
+int	check_vertical_walls(char **raw_map_data)
+{
+	int	col;
+	int	row;
+
+	row = 0;
+	while (raw_map_data[row])
+	{
+		col = 0;
+		while (raw_map_data[row][col])
+		{
+			if (raw_map_data[row][col] != ' ' && raw_map_data[row][col] != '1')
+			{
+				if (raw_map_data[row + 1][col] == ' ' || raw_map_data[row
+					- 1][col] == ' ')
+				{
+					ft_putstr_fd("Error: errors in map in vertical lines\n", 2);
 					return (0);
 				}
 			}

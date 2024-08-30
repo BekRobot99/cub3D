@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/30 16:45:40 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/30 22:53:09 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	is_valid_cub_ext(char *filename)
 
 int	main(int argc, char **argv)
 {
-	t_cub	cub;
-	int		texture_len;
+	t_cub		cub;
+	int			texture_len;
+	t_texture	*texture_list;
 
 	if (argc != 2 || !is_valid_cub_ext(argv[1]))
 	{
@@ -41,4 +42,6 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!check_and_format_map(&cub))
 		return (0);
+	if (build_texture_list(&cub, &texture_list))
+		return (cleanup_map_data(&cub), free_texture_list(&texture_list), 0);
 }

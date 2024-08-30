@@ -6,11 +6,38 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:02:12 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/30 15:30:42 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/30 22:51:02 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	free_texture_list(t_texture **list_head)
+{
+	t_texture	*current_node;
+
+	current_node = *list_head;
+	while (current_node)
+	{
+		*list_head = current_node->next;
+		free(current_node->ident);
+		free(current_node->path);
+		free(current_node);
+		current_node = *list_head;
+	}
+	free(*list_head);
+}
+
+void	cleanup_map_data(t_cub *info)
+{
+	free_str_array(info->square_map);
+	free_str_array(info->map_grid);
+	free_str_array(info->texture_paths);
+	if (info->floor_clr)
+		free_str_array(info->floor_clr);
+	if (info->ceiling_clr)
+		free_str_array(info->ceiling_clr);
+}
 
 char	*fetch_final_map_line(char **raw_map_data)
 {
