@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 04:09:41 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 17:18:54 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/30 15:24:39 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ int	parse_map_data(t_cub *info, int count)
 	free(info->raw_map_data);
 	if (!validate_txtr_clr_list(info->texture_paths, count)
 		|| !verify_element_dup(info) || !check_colors(info->texture_paths)
-		|| !valid_map_boundaries(info->map_grid))
+		|| !valid_map_boundaries(info->map_grid)
+		|| !validate_map_edges(info->map_grid))
 	{
 		free_str_array(info->map_grid);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 17:07:57 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/30 18:40:43 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,18 @@ int			check_and_update_flag(char **current_line, int *flag);
 int			valid_map_boundaries(char **raw_map_data);
 int			is_boundered_by_walls(char *current_line);
 int			validate_map_line(char *current_line, int *char_count);
+
+char		*fetch_final_map_line(char **raw_map_data);
+int			is_line_bordered_by_one(char *current_line);
+int			validate_map_edges(char **raw_map_data);
+
+int			check_and_format_map(t_cub *info);
+int			validate_square_map(t_cub *info);
+int			find_max_line_length(char **raw_map_data);
+int			count_map_lines(char **raw_map_data);
+int			initialize_square_map(t_cub *info, int max_line_size);
+int			check_horizontal_walls(char **raw_map_data);
+int			check_vertical_walls(char **raw_map_data);
+char		*pad_map_line(char *current_line, int max_line_size);
+
 #endif

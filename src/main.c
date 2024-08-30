@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 02:47:44 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/30 16:45:40 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int	main(int argc, char **argv)
 		exit(0);
 	}
 	if (!load_map_data(argv[1], &cub, &texture_len))
+		return (0);
+	if (!check_and_format_map(&cub))
 		return (0);
 }
