@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/30 22:53:09 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/31 02:05:24 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (build_texture_list(&cub, &texture_list))
 		return (cleanup_map_data(&cub), free_texture_list(&texture_list), 0);
+	if (!process_texture_colors(&cub, texture_list))
+		return (cleanup_map_data(&cub), free_texture_list(&texture_list), 0);
+	cub.texture = texture_list;
 }

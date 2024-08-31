@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/30 23:11:26 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/31 02:08:21 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,8 @@ void					free_texture_list(t_texture **list_head);
 void					cleanup_map_data(t_cub *info);
 int						build_texture_list(t_cub *info,
 							t_texture **texture_list);
+
+int						process_texture_colors(t_cub *info,
+							t_texture *texture_list);
 
 #endif
