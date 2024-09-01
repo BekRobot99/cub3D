@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/31 02:05:24 by abekri           ###   ########.fr       */
+/*   Updated: 2024/08/31 02:32:04 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int	main(int argc, char **argv)
 		return (cleanup_map_data(&cub), free_texture_list(&texture_list), 0);
 	if (!process_texture_colors(&cub, texture_list))
 		return (cleanup_map_data(&cub), free_texture_list(&texture_list), 0);
+	find_player_position(&cub);
+	calculate_map_dimensions(&cub);
 	cub.texture = texture_list;
 }

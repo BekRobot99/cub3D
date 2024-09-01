@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/31 02:08:21 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/01 17:10:06 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,8 @@ int						build_texture_list(t_cub *info,
 
 int						process_texture_colors(t_cub *info,
 							t_texture *texture_list);
+
+void					find_player_position(t_cub *info);
+void					calculate_map_dimensions(t_cub *info);
 
 #endif
