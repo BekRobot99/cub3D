@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/31 02:32:04 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/01 17:46:47 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int	is_valid_cub_ext(char *filename)
 {
