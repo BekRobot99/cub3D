@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 02:45:23 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/02 03:06:57 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/02 03:22:24 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	validate_texture_files(t_texture *texture_list)
+int	valid_txtr_paths(t_texture *texture_list)
 {
 	t_texture		*current_texture;
 	mlx_texture_t	*loaded_texture;
@@ -42,6 +42,18 @@ int	init_textures(t_texture *texture, t_texture *texture_list)
 	texture = texture_list;
 	if (!valid_txtr_paths(texture_list))
 		return (0);
+	while (texture)
+	{
+		if (!ft_strncmp(texture->ident, "SO", 2))
+			texture->so = mlx_load_png(texture->path);
+		else if (!ft_strncmp(texture->ident, "WE", 2))
+			texture->we = mlx_load_png(texture->path);
+		else if (!ft_strncmp(texture->ident, "EA", 2))
+			texture->ea = mlx_load_png(texture->path);
+		else if (!ft_strncmp(texture->ident, "NO", 2))
+			texture->no = mlx_load_png(texture->path);
+		texture = texture->next;
+	}
 	return (1);
 }
 

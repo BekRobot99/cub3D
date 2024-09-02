@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/02 03:02:08 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/02 03:17:17 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,6 @@ void					calculate_map_dimensions(t_cub *info);
 
 int						init_game_loop(t_graphics *graf);
 int			init_textures(t_texture *texture, t_texture *texture_list);
-int						validate_texture_files(t_texture *texture_list);
+int						valid_txtr_paths(t_texture *texture_list);
 
 #endif
