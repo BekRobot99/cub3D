@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/02 02:34:43 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/02 03:02:08 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 42
+# define 	BUFFER_SIZE 42
+#define 	FOV 70
+#define 	HEIGHT 1080
+#define 	WIDTH 1920
 
 //preparing thr structs for the game
 typedef struct s_gamer
@@ -167,5 +170,9 @@ int						process_texture_colors(t_cub *info,
 
 void					find_player_position(t_cub *info);
 void					calculate_map_dimensions(t_cub *info);
+
+int						init_game_loop(t_graphics *graf);
+int			init_textures(t_texture *texture, t_texture *texture_list);
+int						validate_texture_files(t_texture *texture_list);
 
 #endif

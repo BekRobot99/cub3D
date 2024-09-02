@@ -19,7 +19,7 @@ LIBFT = libft/libft.a
 SRC = src/load_map.c src/map_checking.c src/colors_checking.c/
 	  src/walls_checking.c src/raws_map_check.c src/format_map.c/
 	  src/texture_list_parser.c src/colors_texture.c /
-	  src/get_position.c
+	  src/get_position.c src/game_loop/game_loop.c
 		  
 CC = cc
 RM = rm -f

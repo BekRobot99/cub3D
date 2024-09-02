@@ -6,14 +6,12 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/02 02:11:03 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/02 02:48:22 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-#define FOV 70
-#define HEIGHT 1080
-#define WIDTH 1920
+
 
 int	is_valid_cub_ext(char *filename)
 {
@@ -61,4 +59,5 @@ int	main(int argc, char **argv)
 	graf.raycast = (t_castray *)ft_calloc(sizeof(t_castray), 1);
 	graf.texture = (t_texture *)ft_calloc(sizeof(t_texture), 1);
 	graf.data = &cub;
+	init_game_loop(&graf);
 }
