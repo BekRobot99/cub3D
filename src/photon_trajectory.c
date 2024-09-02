@@ -6,7 +6,7 @@
 /*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:25:25 by amohame2          #+#    #+#             */
-/*   Updated: 2024/09/02 16:27:48 by amohame2         ###   ########.fr       */
+/*   Updated: 2024/09/02 16:35:33 by amohame2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static double	initial_wavefront_phase(t_gamer *observer, double field_span)
 
 void	emit_photon_array(t_graphics *quanta_field)
 {
-	double      wavefront_phase;
-	double      phase_increment;
-	int         photon_count;
+	double	wavefront_phase;
+	double	phase_increment;
+	int		photon_count;
 
 	wavefront_phase = initial_wavefront_phase(quanta_field->player,
 			quanta_field->player->fov);
@@ -60,4 +60,40 @@ void	emit_photon_array(t_graphics *quanta_field)
 				+ phase_increment);
 		photon_count++;
 	}
+}
+static void	trace_photon_path(t_graphics *quanta_field, double wavefront_phase,
+		int photon_count)
+{
+	t_castray	*quantum_state;
+
+	quantum_state = quanta_field->raycast;
+	quantum_state->beam_angle = wavefront_phase;
+	quantum_state->beam_index = photon_count;
+	analyze_planar_intersections(quanta_field, quantum_state);
+	analyze_axial_intersections(quanta_field, quantum_state);
+	if (quantum_state->intrsxn_x_horz == -1 || (quantum_state->intrsxn_x_vert !=
+			-1 && calculate_euclidean_norm(quanta_field->player->pos_x,
+				quanta_field->player->pos_y, quantum_state->intrsxn_x_vert,
+				quantum_state->intrsxn_y_vert) < calculate_euclidean_norm(quanta_field->player->pos_x,
+				quanta_field->player->pos_y, quantum_state->intrsxn_x_horz,
+				quantum_state->intrsxn_y_horz)))
+	{
+		quantum_state->ray_length = calculate_euclidean_norm(quanta_field->player->pos_x,
+				quanta_field->player->pos_y, quantum_state->intrsxn_x_vert,
+				quantum_state->intrsxn_y_vert);
+		quantum_state->hit_type = 1; // axial collision
+	}
+	else
+	{
+		quantum_state->ray_length = calculate_euclidean_norm(quanta_field->player->pos_x,
+				quanta_field->player->pos_y, quantum_state->intrsxn_x_horz,
+				quantum_state->intrsxn_y_horz);
+		quantum_state->hit_type = 0; // planar collision
+	}
+}
+
+static double	calculate_euclidean_norm(double x1, double y1, double x2,
+		double y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
