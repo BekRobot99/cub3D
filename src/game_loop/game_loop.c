@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 02:45:23 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/02 03:22:24 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/02 03:31:05 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ int	init_textures(t_texture *texture, t_texture *texture_list)
 		texture = texture->next;
 	}
 	return (1);
+}
+
+void	ft_exit(t_graphics *graf)
+{
+	mlx_delete_image(graf->mlx_ptr, graf->image);
+	mlx_close_window(graf->mlx_ptr);
+	free_texture_list(graf->data->texture);
+	cleanup_map_data(graf->data);
+	ft_delete_tex(graf->texture);
+	free(graf->player);
+	free(graf->raycast);
+	free(graf->texture);
+	mlx_terminate(graf->mlx_ptr);
+	exit(0);
 }
 
 int	init_game_loop(t_graphics *graf)
