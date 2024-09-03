@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 02:45:23 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/02 03:31:05 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/03 03:51:52 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,31 @@ int	init_textures(t_texture *texture, t_texture *texture_list)
 	return (1);
 }
 
-void	ft_exit(t_graphics *graf)
-{
-	mlx_delete_image(graf->mlx_ptr, graf->image);
-	mlx_close_window(graf->mlx_ptr);
-	free_texture_list(graf->data->texture);
-	cleanup_map_data(graf->data);
-	ft_delete_tex(graf->texture);
-	free(graf->player);
-	free(graf->raycast);
-	free(graf->texture);
-	mlx_terminate(graf->mlx_ptr);
-	exit(0);
-}
-
 int	init_game_loop(t_graphics *graf)
 {
+	char	dir;
+
 	graf->mlx_ptr = mlx_init(WIDTH, HEIGHT, "cub3D", false);
 	if (!graf->mlx_ptr)
 		return (ft_exit(graf), 0);
 	if (!init_textures(graf->texture, graf->data->texture))
 		return (ft_exit(graf), 0);
+	dir = graf->data->map_grid[graf->data->ppos_y][graf->data->ppos_x];
+	if (dir == 'W')
+		graf->player->direction = M_PI;
+	if (dir == 'N')
+		graf->player->direction = 3 * M_PI / 2;
+	if (dir == 'E')
+		graf->player->direction = 0;
+	if (dir == 'S')
+		graf->player->direction = M_PI / 2;
+	graf->player->pos_x = (graf->data->ppos_x * MAP_BLOCK_LEN) + MAP_BLOCK_LEN
+		/ 2;
+	graf->player->pos_y = (graf->data->ppos_y * MAP_BLOCK_LEN) + MAP_BLOCK_LEN
+		/ 2;
+	graf->player->fov = (FOV * M_PI / 180);
+	mlx_key_hook(graf->mlx_ptr, &handle_key_event, graf);
+	mlx_loop(graf->mlx_ptr);
+	ft_exit(graf);
 	return (1);
 }
