@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 02:45:23 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/03 03:51:52 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/03 04:12:00 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,18 @@ int	valid_txtr_paths(t_texture *texture_list)
 	return (1);
 }
 
-int	init_textures(t_texture *texture, t_texture *texture_list)
+void	ft_exit(t_graphics *graf)
 {
-	t_texture	*texture;
-
-	texture = texture_list;
-	if (!valid_txtr_paths(texture_list))
-		return (0);
-	while (texture)
-	{
-		if (!ft_strncmp(texture->ident, "SO", 2))
-			texture->so = mlx_load_png(texture->path);
-		else if (!ft_strncmp(texture->ident, "WE", 2))
-			texture->we = mlx_load_png(texture->path);
-		else if (!ft_strncmp(texture->ident, "EA", 2))
-			texture->ea = mlx_load_png(texture->path);
-		else if (!ft_strncmp(texture->ident, "NO", 2))
-			texture->no = mlx_load_png(texture->path);
-		texture = texture->next;
-	}
-	return (1);
+	mlx_delete_image(graf->mlx_ptr, graf->image);
+	mlx_close_window(graf->mlx_ptr);
+	free_texture_list(graf->data->texture);
+	cleanup_map_data(graf->data);
+	ft_delete_tex(graf->texture);
+	free(graf->player);
+	free(graf->raycast);
+	free(graf->texture);
+	mlx_terminate(graf->mlx_ptr);
+	exit(0);
 }
 
 int	init_game_loop(t_graphics *graf)
