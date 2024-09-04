@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 02:45:23 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/03 04:14:41 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 01:33:28 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	init_game_loop(t_graphics *graf)
 		/ 2;
 	graf->player->fov = (FOV * M_PI / 180);
 	mlx_key_hook(graf->mlx_ptr, &handle_key_event, graf);
+	mlx_loop_hook(graf->mlx_ptr, &draw_game, graf);
 	mlx_loop(graf->mlx_ptr);
 	ft_exit(graf);
 	return (1);

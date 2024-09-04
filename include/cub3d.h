@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/03 04:03:18 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 01:32:41 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,4 +179,5 @@ void					ft_exit(t_graphics *graf);
 void					handle_key_event(mlx_key_data_t indent_info,
 							void *graphics);
 
+void					draw_game(void *mlxl);
 #endif
