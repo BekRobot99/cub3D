@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_checking.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:28:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/29 17:21:54 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 16:35:22 by amohame2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@ int	validate_map_line(char *current_line, int *char_count)
 	index = 0;
 	while (current_line[index])
 	{
-		if ((current_line[index] != ' ' && current_line[index] != '0'
+		if (((current_line[index] != ' ' && current_line[index] != '0'
 				&& current_line[index] != '1' && current_line[index] != '\n')
-			&& !(current_line[index] == 'N' || current_line[index] == 'S')
-			|| current_line[index] == 'W' || current_line[index] == 'E')
-			return (0);
-		else if (current_line[index] == 'N' || current_line[index] == 'S'
-			|| current_line[index] == 'W' || current_line[index] == 'E')
-			(*char_count)++;
+			&& !(current_line[index] == 'N' || current_line[index] == 'S'
+			|| current_line[index] == 'W' || current_line[index] == 'E'))
+			|| (current_line[index] == 'N' || current_line[index] == 'S'
+			|| current_line[index] == 'W' || current_line[index] == 'E'))
+		{
+			if (current_line[index] == 'N' || current_line[index] == 'S'
+				|| current_line[index] == 'W' || current_line[index] == 'E')
+				(*char_count)++;
+			else
+				return (0);
+		}
 		index++;
 	}
 	return (1);

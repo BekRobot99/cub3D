@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_mov.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 05:04:35 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/05 02:11:24 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 18:12:16 by amohame2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,52 @@ void	handle_player_movement(t_graphics *graf, double xoffset, double yoffset)
 	update_player_position(graf, xoffset, yoffset);
 }
 
-void	draw_game(void *mlxl)
+void draw_game(void *param)
 {
-	t_graphics	*graf;
+    t_graphics *graf = (t_graphics *)param;
+    
+    printf("Debug: Entering draw_game function\n");
 
-	graf = mlxl;
-	mlx_delete_image(graf->mlx_ptr, graf->image);
-	graf->image = mlx_new_image(graf->mlx_ptr, WIDTH, HEIGHT);
-	handle_player_movement(graf, 0, 0); // the first position of the player;
-	//(my partner part) a fucbtion that cast the rays which will use  (graf) as arguments;
-	mlx_image_to_window(graf->mlx_ptr, graf->image, 0, 0);
+    if (!graf || !graf->mlx_ptr || !graf->player || !graf->data)
+    {
+        printf("Debug: Null pointer detected in draw_game\n");
+        return;
+    }
+
+    // Clear the previous frame
+    if (graf->image)
+    {
+        mlx_delete_image(graf->mlx_ptr, graf->image);
+        printf("Debug: Previous image deleted\n");
+    }
+
+    graf->image = mlx_new_image(graf->mlx_ptr, WIDTH, HEIGHT);
+    if (!graf->image)
+    {
+        printf("Debug: Failed to create new image\n");
+        return;
+    }
+    printf("Debug: New image created\n");
+
+    // Draw the game elements
+    printf("Debug: About to call emit_photon_array\n");
+    emit_photon_array(graf);
+    printf("Debug: emit_photon_array completed\n");
+
+    // Put the image to the window
+    if (mlx_image_to_window(graf->mlx_ptr, graf->image, 0, 0) < 0)
+    {
+        printf("Debug: Failed to put image to window\n");
+    }
+    else
+    {
+        printf("Debug: Image put to window successfully\n");
+    }
+
+    // Handle player movement
+    printf("Debug: About to handle player movement\n");
+    handle_player_movement(graf, 0, 0);
+    printf("Debug: Player movement handled\n");
+
+    printf("Debug: Exiting draw_game function\n");
 }

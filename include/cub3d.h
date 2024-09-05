@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/05 01:32:41 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 18:58:26 by amohame2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "libft/libft.h"
+# include "../MLX42/MLX42/include/MLX42/MLX42.h"
+# include "../libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -61,16 +61,7 @@ typedef struct s_castray
 	double				intrsxn_y_horz;
 }						t_castray;
 
-typedef struct s_graphics
-{
-	t_gamer				*player;
-	mlx_image_t			*image;
-	mlx_t				*mlx_ptr;
-	t_cub				*data;
-	t_texture			*texture;
-	mouse_mode_t		mouse_mode;
-	t_castray			*raycast;
-}						t_graphics;
+
 
 typedef struct s_texture
 {
@@ -81,6 +72,7 @@ typedef struct s_texture
 	int					bpp;
 	int					line_length;
 	int					endian;
+	mlx_texture_t		*texture; 
 	struct s_texture	*next;
 	int					width;
 	int					height;
@@ -92,27 +84,41 @@ typedef struct s_texture
 
 typedef struct s_cub
 {
-	int					fd;
-	int					index;
-	char				**map_grid;
-	int					ppos_x;
-	int					ppos_y;
-	int					map_width;
-	int					map_height;
-	int					nb_lines;
-	int					nb_cols;
-	char				**texture_paths;
-	char				**square_map;
-	char				*texture_path;
-	char				*raw_map_data;
-	char				**rgb;
-	char				**floor_clr;
-	char				**ceiling_clr;
-	char				*current_line;
-	t_texture			*texture;
-}						t_cub;
+    int                 fd;
+    int                 index;
+    char                **map_grid;
+    int                 ppos_x;
+    int                 ppos_y;
+    int                 map_width;
+    int                 map_height;
+    int                 nb_lines;
+    int                 nb_cols;
+    char                **texture_paths;
+    char                **square_map;
+    char                *texture_path;
+    char                *raw_map_data;
+    char                **rgb;
+    char                **floor_clr;
+    char                **ceiling_clr;
+    char                *current_line;
+    t_texture           *texture;
+    uint32_t            ceiling_color;
+    uint32_t            floor_color;
+}                       t_cub;
 
+
+typedef struct s_graphics
+{
+	t_gamer				*player;
+	mlx_image_t			*image;
+	mlx_t				*mlx_ptr;
+	t_cub				*data;
+	t_texture			*texture;
+	mouse_mode_t		mouse_mode;
+	t_castray			*raycast;
+}						t_graphics;
 char					*get_next_line(int fd);
+
 
 void					free_str_array(char *array[]);
 void					cleanup_resources(char *texture_path,
@@ -179,5 +185,20 @@ void					ft_exit(t_graphics *graf);
 void					handle_key_event(mlx_key_data_t indent_info,
 							void *graphics);
 
+void					emit_photon_array(t_graphics *quanta_field);
+ void				trace_photon_path(t_graphics *quanta_field,
+							double wavefront_phase, int photon_count);
+ double			calculate_euclidean_norm(double x1, double y1,
+							double x2, double y2);
+ double			quantum_phase_shift(double phase);
+ double			initial_wavefront_phase(t_gamer *observer,
+							double field_span);
+void					analyze_planar_intersections(t_graphics *quanta_field,
+							t_castray *quantum_state);
+void					analyze_axial_intersections(t_graphics *quanta_field,
+							t_castray *quantum_state);
+void ft_delete_tex(t_texture *texture);
 void					draw_game(void *mlxl);
+void draw_wall(t_graphics *quanta_field, int x, int draw_start, int draw_end);
+int file_exists(const char *path);
 #endif
