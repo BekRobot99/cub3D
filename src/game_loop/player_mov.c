@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 05:04:35 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/05 02:01:35 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 02:11:24 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,5 @@ void	draw_game(void *mlxl)
 	graf->image = mlx_new_image(graf->mlx_ptr, WIDTH, HEIGHT);
 	handle_player_movement(graf, 0, 0); // the first position of the player;
 	//(my partner part) a fucbtion that cast the rays which will use  (graf) as arguments;
+	mlx_image_to_window(graf->mlx_ptr, graf->image, 0, 0);
 }
