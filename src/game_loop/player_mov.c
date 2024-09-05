@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 05:04:35 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/05 01:39:34 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/05 02:01:35 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,47 @@ void	update_player_position(t_graphics *graf, double offset_x,
 	}
 }
 
-void	handle_player_movement(t_graphics *graf, double xoffset,
-		double yoffset)
+void	handle_horizontal_movement(t_graphics *graf, double *xoffset, double *yoffset)
 {
 	if (graf->player->move_lt_rt == -1)
 	{
-		xoffset = MOVEMENT_SPEED * sin(graf->player->direction);
-		yoffset = MOVEMENT_SPEED * (-cos(graf->player->direction));
+		*xoffset = MOVEMENT_SPEED * sin(graf->player->direction);
+		*yoffset = MOVEMENT_SPEED * (-cos(graf->player->direction));
 	}
-	if (graf->player->dir_rotation == 1)
-		adjust_player_rotation(graf, 1);
-	if (graf->player->dir_rotation == -1)
-		adjust_player_rotation(graf, 0);
-	if (graf->player->move_lt_rt == 1)
+	else if (graf->player->move_lt_rt == 1)
 	{
-		xoffset = MOVEMENT_SPEED * (-sin(graf->player->direction));
-		yoffset = MOVEMENT_SPEED * cos(graf->player->direction);
+		*xoffset = MOVEMENT_SPEED * (-sin(graf->player->direction));
+		*yoffset = MOVEMENT_SPEED * cos(graf->player->direction);
 	}
+}
+
+void	handle_vertical_movement(t_graphics *graf, double *xoffset, double *yoffset)
+{
 	if (graf->player->move_up_dwn == 1)
 	{
-		xoffset = MOVEMENT_SPEED * cos(graf->player->direction);
-		yoffset = MOVEMENT_SPEED * sin(graf->player->direction);
+		*xoffset = MOVEMENT_SPEED * cos(graf->player->direction);
+		*yoffset = MOVEMENT_SPEED * sin(graf->player->direction);
 	}
-	if (graf->player->move_up_dwn == -1)
+	else if (graf->player->move_up_dwn == -1)
 	{
-		xoffset = -cos(graf->player->direction) * MOVEMENT_SPEED;
-		yoffset = -sin(graf->player->direction) * MOVEMENT_SPEED;
+		*xoffset = -cos(graf->player->direction) * MOVEMENT_SPEED;
+		*yoffset = -sin(graf->player->direction) * MOVEMENT_SPEED;
 	}
+}
+
+void	handle_rotation(t_graphics *graf)
+{
+	if (graf->player->dir_rotation == 1)
+		adjust_player_rotation(graf, 1);
+	else if (graf->player->dir_rotation == -1)
+		adjust_player_rotation(graf, 0);
+}
+
+void	handle_player_movement(t_graphics *graf, double xoffset, double yoffset)
+{
+	handle_horizontal_movement(graf, &xoffset, &yoffset);
+	handle_vertical_movement(graf, &xoffset, &yoffset);
+	handle_rotation(graf);
 	update_player_position(graf, xoffset, yoffset);
 }
 
