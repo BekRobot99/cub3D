@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:38:57 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:01:20 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,4 +214,15 @@ int						init_graphics(t_graphics *graf);
 void					update_player_position(t_graphics *graf,
 							double offset_x, double offset_y);
 void					adjust_player_rotation(t_graphics *graf, int angle_pos);
+mlx_texture_t			*select_txtr(t_graphics *graf, int texture);
+void					fill_floor_and_ceiling(t_graphics *gfx, int ray_index,
+							int top_pixel, int bottom_pixel);
+double					calculate_euclidean_norm(mlx_texture_t *texture,
+							t_graphics *graf);
+int						in_quadrant(float radians, char axis);
+int						is_wall(float pos_x, float pos_y, t_graphics *gfx);
+int						adjust_intersection(double radius, double *pos,
+							double *delta, int is_horizontal);
+int	ft_strcmp(const char *s1, const char *s2);
+
 #endif

@@ -6,11 +6,36 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 02:18:56 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 06:55:36 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:02:27 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+int	is_valid_cub_ext(char *filename)
+{
+	char	*extension;
+
+	extension = ft_strrchr(filename, '.');
+	if (!filename || !extension)
+		return (0);
+	else if (extension)
+	{
+		if (!ft_strcmp(extension, ".cub"))
+			return (1);
+	}
+	return (0);
+}
 
 void	find_player_position(t_cub *info)
 {
