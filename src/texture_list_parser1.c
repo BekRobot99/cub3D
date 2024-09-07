@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:03:42 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:04:05 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 07:21:13 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ int	skip_whitespace(char *current_line, int start_index)
 		start_index++;
 	}
 	return (start_index);
-}
-
-t_texture	*allocate_texture(void)
-{
-	t_texture	*texture;
-
-	texture = (t_texture *)ft_calloc(sizeof(t_texture), 1);
-	if (!texture)
-		return (NULL);
-	return (texture);
 }
 
 char	*skip_leading_whitespace(char *current_line)

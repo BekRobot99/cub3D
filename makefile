@@ -33,7 +33,8 @@ SRC = src/load_map.c src/map_cheking.c src/colors_checking.c \
       src/get_position.c src/game_loop/game_loop.c src/game_loop/keys.c	\
       src/photon_trajectory.c src/game_loop/player_mov.c src/main.c get_next_line/get_next_line.c \
 	  src/rendering_walls.c src/colors_checking1.c src/format_map1.c src/load_map1.c \
-	  src/texture_list_parser1.c \
+	  src/texture_list_parser1.c src/create_texture.c src/game_loop/init_game_loop.c \
+	  src/game_loop/mov_rot.c
 
 all : $(NAME)
 

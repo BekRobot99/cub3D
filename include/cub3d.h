@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:06:47 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 07:38:57 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,4 +208,10 @@ void					place_pixel(t_graphics *graphics, int pos_x, int pos_y,
 							int color_value);
 int						skip_whitespace(char *current_line, int start_index);
 int						is_valid_png_path(const char *path);
+t_texture				*create_texture(char *path);
+t_texture				*allocate_texture(void);
+int						init_graphics(t_graphics *graf);
+void					update_player_position(t_graphics *graf,
+							double offset_x, double offset_y);
+void					adjust_player_rotation(t_graphics *graf, int angle_pos);
 #endif

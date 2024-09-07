@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:28:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/06 20:56:29 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 07:12:10 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	is_boundered_by_walls(char *current_line)
 		|| *current_line == '\n' || *current_line == '\v'
 		|| *current_line == '\f' || *current_line == '\r')
 		current_line++;
-	if (*current_line != '1' || current_line[ft_strlen(current_line) - 1] != '1')
+	if (*current_line != '1'
+		|| current_line[ft_strlen(current_line) - 1] != '1')
 		return (0);
 	return (1);
 }
