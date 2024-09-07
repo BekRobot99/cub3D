@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 02:06:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:44:43 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:26 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	reverse_byte_order(int color)
 {

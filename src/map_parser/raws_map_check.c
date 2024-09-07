@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:02:12 by abekri            #+#    #+#             */
-/*   Updated: 2024/08/30 22:51:02 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:17:01 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	free_texture_list(t_texture **list_head)
 {

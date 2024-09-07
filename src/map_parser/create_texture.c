@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:14:13 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:16:49 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:51 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 char	**split_and_validate_path(char *path)
 {

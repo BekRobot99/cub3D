@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:48:47 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:51:09 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:14 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 t_steps	calculate_planar_step_size(float angle)
 {

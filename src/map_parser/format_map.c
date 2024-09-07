@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:47:12 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:00:19 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:54 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	find_max_line_length(char **raw_map_data)
 {

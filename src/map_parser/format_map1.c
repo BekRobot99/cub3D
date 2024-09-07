@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 06:59:24 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:00:25 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:58 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	check_horizontal_walls(char **raw_map_data)
 {

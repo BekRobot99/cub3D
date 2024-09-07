@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:01:14 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:01:42 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:16:09 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	free_str_array(char *array[])
 {

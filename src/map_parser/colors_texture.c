@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 01:42:54 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 06:56:11 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:47 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	validate_rgb_values(char **colors)
 {

@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 19:05:42 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:21:06 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:17:05 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 #include <string.h>
 
 t_texture	*allocate_texture(void)

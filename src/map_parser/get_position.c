@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 02:18:56 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:02:27 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:16:02 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

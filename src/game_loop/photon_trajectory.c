@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:48:25 by amohame2          #+#    #+#             */
-/*   Updated: 2024/09/07 07:52:00 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:07 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 #include <math.h>
 
 #define TAU 6.28318530717958647692

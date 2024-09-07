@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:01:20 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:24:45 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,6 @@ int						in_quadrant(float radians, char axis);
 int						is_wall(float pos_x, float pos_y, t_graphics *gfx);
 int						adjust_intersection(double radius, double *pos,
 							double *delta, int is_horizontal);
-int	ft_strcmp(const char *s1, const char *s2);
+int						ft_strcmp(const char *s1, const char *s2);
 
 #endif

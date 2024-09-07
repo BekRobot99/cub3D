@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:44:11 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:08:19 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:32 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 mlx_texture_t	*select_txtr(t_graphics *graf, int texture)
 {

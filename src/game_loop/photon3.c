@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:52:18 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:52:25 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:17 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 double	trace_photon_path(t_graphics *quanta_field)
 {

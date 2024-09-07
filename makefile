@@ -27,15 +27,15 @@ CFLAGS = -Wall -Werror -Wextra -O3 -ffast-math
 
 OBJS = $(SRC:%.c=%.o)
 
-SRC = src/load_map.c src/map_cheking.c src/colors_checking.c \
-      src/walls_checking.c src/raws_map_check.c src/format_map.c \
-      src/texture_list_parser.c src/colors_texture.c \
-      src/get_position.c src/game_loop/game_loop.c src/game_loop/keys.c	\
-      src/photon_trajectory.c src/game_loop/player_mov.c src/main.c get_next_line/get_next_line.c \
-	  src/rendering_walls.c src/colors_checking1.c src/format_map1.c src/load_map1.c \
-	  src/texture_list_parser1.c src/create_texture.c src/game_loop/init_game_loop.c \
-	  src/game_loop/mov_rot.c src/rendering_walls1.c src/photon1.c src/photon2.c \
-	  src/photon3.c
+SRC = src/map_parser/load_map.c src/map_parser/map_cheking.c src/map_parser/colors_checking.c \
+      src/map_parser/walls_checking.c src/map_parser/raws_map_check.c src/map_parser/format_map.c \
+      src/map_parser/texture_list_parser.c src/map_parser/colors_texture.c \
+      src/map_parser/get_position.c src/game_loop/game_loop.c src/game_loop/keys.c	\
+      src/game_loop/photon_trajectory.c src/game_loop/player_mov.c src/main.c get_next_line/get_next_line.c \
+	  src/game_loop/rendering_walls.c src/map_parser/colors_checking1.c src/map_parser/format_map1.c src/map_parser/load_map1.c \
+	  src/map_parser/texture_list_parser1.c src/map_parser/create_texture.c src/game_loop/init_game_loop.c \
+	  src/game_loop/mov_rot.c src/game_loop/rendering_walls1.c src/game_loop/photon1.c src/game_loop/photon2.c \
+	  src/game_loop/photon3.c
 all : $(NAME)
 
 $(NAME) : $(OBJS)

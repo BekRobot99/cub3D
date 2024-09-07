@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 06:58:18 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 06:59:01 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:15:44 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	check_and_update_flag(char **current_line, int *flag)
 {

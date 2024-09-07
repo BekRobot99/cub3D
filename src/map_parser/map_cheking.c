@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 04:09:41 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:02:16 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:16:18 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	verify_element_dup(t_cub *info)
 {

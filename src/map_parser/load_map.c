@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 02:46:04 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:01:36 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:16:06 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	open_file(char *file_path, t_cub *info)
 {

@@ -6,11 +6,11 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:28:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:12:10 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 08:17:11 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	validate_map_line(char *current_line, int *char_count)
 {
