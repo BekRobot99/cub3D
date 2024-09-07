@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_checking.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:28:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/05 16:35:22 by amohame2         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:56:29 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ int	validate_map_line(char *current_line, int *char_count)
 	while (current_line[index])
 	{
 		if (((current_line[index] != ' ' && current_line[index] != '0'
-				&& current_line[index] != '1' && current_line[index] != '\n')
-			&& !(current_line[index] == 'N' || current_line[index] == 'S'
-			|| current_line[index] == 'W' || current_line[index] == 'E'))
+					&& current_line[index] != '1'
+					&& current_line[index] != '\n')
+				&& !(current_line[index] == 'N' || current_line[index] == 'S'
+					|| current_line[index] == 'W'
+					|| current_line[index] == 'E'))
 			|| (current_line[index] == 'N' || current_line[index] == 'S'
-			|| current_line[index] == 'W' || current_line[index] == 'E'))
+				|| current_line[index] == 'W' || current_line[index] == 'E'))
 		{
 			if (current_line[index] == 'N' || current_line[index] == 'S'
 				|| current_line[index] == 'W' || current_line[index] == 'E')
@@ -43,8 +45,7 @@ int	is_boundered_by_walls(char *current_line)
 		|| *current_line == '\n' || *current_line == '\v'
 		|| *current_line == '\f' || *current_line == '\r')
 		current_line++;
-	if (*current_line != '1' || current_line[ft_strlen(current_line)
-		- 1] != '1')
+	if (*current_line != '1' || current_line[ft_strlen(current_line) - 1] != '1')
 		return (0);
 	return (1);
 }

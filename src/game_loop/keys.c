@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:38:01 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/03 03:57:49 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/06 21:47:19 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	handle_key_event(mlx_key_data_t indent_info, void *graphics)
 	t_graphics	*gfx;
 
 	gfx = graphics;
-
 	if (indent_info.key == MLX_KEY_ESCAPE && (indent_info.action == MLX_PRESS
 			|| indent_info.action == MLX_REPEAT))
 	{

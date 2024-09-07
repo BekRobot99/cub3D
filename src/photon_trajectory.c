@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   photon_trajectory.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:48:25 by amohame2          #+#    #+#             */
-/*   Updated: 2024/09/05 19:02:35 by amohame2         ###   ########.fr       */
+/*   Updated: 2024/09/07 05:28:06 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,272 +15,219 @@
 
 #define TAU 6.28318530717958647692
 
- double	quantum_phase_shift(double phase)
+double	quantum_phase_shift(double phase)
 {
-	while (phase >= TAU)
-		phase -= TAU;
-	while (phase < 0)
-		phase += TAU;
+	if (phase > (TAU))
+		phase -= (TAU);
+	if (phase < 0)
+		phase += (TAU);
 	return (phase);
 }
 
- double	initial_wavefront_phase(t_gamer *observer, double field_span)
+void	increment_ray_angle(t_graphics *quanta_field)
 {
-	return (quantum_phase_shift(observer->direction - (field_span / 2)));
+	quanta_field->raycast->beam_angle += (quanta_field->player->fov / WIDTH);
 }
 
-void emit_photon_array(t_graphics *quanta_field)
+void	initial_wavefront_phase(t_graphics *quanta_field)
 {
-    printf("Debug: Entering emit_photon_array\n");
-
-    if (!quanta_field || !quanta_field->player)
-    {
-        printf("Debug: Null pointer detected in emit_photon_array\n");
-        return;
-    }
-
-    double wavefront_phase;
-    double phase_increment;
-    int photon_count;
-
-    wavefront_phase = initial_wavefront_phase(quanta_field->player, quanta_field->player->fov);
-    phase_increment = quanta_field->player->fov / WIDTH;
-    photon_count = 0;
-
-    printf("Debug: Starting photon emission loop\n");
-    while (photon_count < WIDTH)
-    {
-        printf("Debug: Emitting photon %d\n", photon_count);
-        trace_photon_path(quanta_field, wavefront_phase, photon_count);
-        wavefront_phase = quantum_phase_shift(wavefront_phase + phase_increment);
-        photon_count++;
-    }
-    printf("Debug: Finished emitting photons\n");
+	quanta_field->raycast->beam_angle = quanta_field->player->direction
+		- (quanta_field->player->fov / 2);
 }
 
-
-void draw_wall(t_graphics *quanta_field, int x, int draw_start, int draw_end)
+void	emit_photon_array(t_graphics *quanta_field)
 {
-    printf("Debug: Entering draw_wall function\n");
-    printf("Debug: x: %d, draw_start: %d, draw_end: %d\n", x, draw_start, draw_end);
+	int		photon_count;
+	double	wavefront_phase;
 
-    if (!quanta_field || !quanta_field->image || !quanta_field->data || !quanta_field->raycast)
-    {
-        printf("Debug: Null pointer detected in draw_wall\n");
-        return;
-    }
-
-    int y;
-    uint32_t color;
-
-    // Draw ceiling
-    printf("Debug: Drawing ceiling\n");
-    for (y = 0; y < draw_start; y++)
-    {
-        if (y >= HEIGHT)
-        {
-            printf("Debug: Ceiling y out of bounds: %d\n", y);
-            break;
-        }
-        mlx_put_pixel(quanta_field->image, x, y, quanta_field->data->ceiling_color);
-    }
-
-    // Draw wall
-    printf("Debug: Drawing wall\n");
-    for (y = draw_start; y < draw_end; y++)
-    {
-        if (y >= HEIGHT)
-        {
-            printf("Debug: Wall y out of bounds: %d\n", y);
-            break;
-        }
-        if (quanta_field->raycast->hit_type == 0) // planar collision
-        {
-            if (!quanta_field->data->texture->no || !quanta_field->data->texture->no->pixels)
-            {
-                printf("Debug: Null texture pointer for planar collision\n");
-                return;
-            }
-            color = quanta_field->data->texture->no->pixels[(y * quanta_field->data->texture->no->width + x) * 4];
-        }
-        else // axial collision
-        {
-            if (!quanta_field->data->texture->ea || !quanta_field->data->texture->ea->pixels)
-            {
-                printf("Debug: Null texture pointer for axial collision\n");
-                return;
-            }
-            color = quanta_field->data->texture->ea->pixels[(y * quanta_field->data->texture->ea->width + x) * 4];
-        }
-        mlx_put_pixel(quanta_field->image, x, y, color);
-    }
-
-    // Draw floor
-    printf("Debug: Drawing floor\n");
-    for (y = draw_end; y < HEIGHT; y++)
-    {
-        mlx_put_pixel(quanta_field->image, x, y, quanta_field->data->floor_color);
-    }
-
-    printf("Debug: Exiting draw_wall function\n");
-}
-void trace_photon_path(t_graphics *quanta_field, double wavefront_phase, int photon_count)
-{
-    printf("Debug: Tracing photon path for photon %d\n", photon_count);
-
-    if (!quanta_field || !quanta_field->raycast)
-    {
-        printf("Debug: Null pointer detected in trace_photon_path\n");
-        return;
-    }
-
-    t_castray *quantum_state = quanta_field->raycast;
-    double wall_height;
-    int draw_start, draw_end;
-
-    printf("Debug: Setting quantum_state parameters\n");
-    quantum_state->beam_angle = wavefront_phase;
-    quantum_state->beam_index = photon_count;
-
-    printf("Debug: Calling analyze_planar_intersections\n");
-    analyze_planar_intersections(quanta_field, quantum_state);
-    printf("Debug: analyze_planar_intersections completed\n");
-
-    printf("Debug: Calling analyze_axial_intersections\n");
-    analyze_axial_intersections(quanta_field, quantum_state);
-    printf("Debug: analyze_axial_intersections completed\n");
-
-    printf("Debug: Calculating ray length\n");
-    if (quantum_state->intrsxn_x_horz == -1 || (quantum_state->intrsxn_x_vert != -1 &&
-        calculate_euclidean_norm(quanta_field->player->pos_x, quanta_field->player->pos_y,
-        quantum_state->intrsxn_x_vert, quantum_state->intrsxn_y_vert) <
-        calculate_euclidean_norm(quanta_field->player->pos_x, quanta_field->player->pos_y,
-        quantum_state->intrsxn_x_horz, quantum_state->intrsxn_y_horz)))
-    {
-        quantum_state->ray_length = calculate_euclidean_norm(quanta_field->player->pos_x,
-            quanta_field->player->pos_y, quantum_state->intrsxn_x_vert, quantum_state->intrsxn_y_vert);
-        quantum_state->hit_type = 1; // axial collision
-    }
-    else
-    {
-        quantum_state->ray_length = calculate_euclidean_norm(quanta_field->player->pos_x,
-            quanta_field->player->pos_y, quantum_state->intrsxn_x_horz, quantum_state->intrsxn_y_horz);
-        quantum_state->hit_type = 0; // planar collision
-    }
-    printf("Debug: Ray length calculated: %f\n", quantum_state->ray_length);
-
-    printf("Debug: Applying fisheye correction\n");
-    quantum_state->ray_length *= cos(quanta_field->player->direction - wavefront_phase);
-
-    printf("Debug: Calculating wall height\n");
-    wall_height = (MAP_BLOCK_LEN / quantum_state->ray_length) * ((WIDTH / 2) / tan(FOV / 2));
-    printf("Debug: Wall height calculated: %f\n", wall_height);
-
-    printf("Debug: Calculating draw start and end points\n");
-    draw_start = (HEIGHT / 2) - (wall_height / 2);
-    draw_end = (HEIGHT / 2) + (wall_height / 2);
-
-    if (draw_start < 0)
-        draw_start = 0;
-    if (draw_end >= HEIGHT)
-        draw_end = HEIGHT - 1;
-
-    printf("Debug: Draw start: %d, Draw end: %d\n", draw_start, draw_end);
-
-    printf("Debug: Calling draw_wall\n");
-    draw_wall(quanta_field, photon_count, draw_start, draw_end);
-    printf("Debug: draw_wall completed\n");
-
-    printf("Debug: Finished tracing photon path for photon %d\n", photon_count);
+	photon_count = 0;
+	initial_wavefront_phase(quanta_field);
+	while (photon_count < WIDTH)
+	{
+		wavefront_phase = trace_photon_path(quanta_field);
+		display_ray(quanta_field, photon_count);
+		increment_ray_angle(quanta_field);
+		photon_count++;
+	}
 }
 
-
- double	calculate_euclidean_norm(double x1, double y1, double x2,
-		double y2)
+double	trace_photon_path(t_graphics *quanta_field)
 {
-	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+	double	wavefront_phase;
+	double	phase_increment;
+
+	quanta_field->raycast->hit_type = 0;
+	wavefront_phase = analyze_planar_intersections(quanta_field,
+			quantum_phase_shift(quanta_field->raycast->beam_angle));
+	phase_increment = analyze_axial_intersections(quanta_field,
+			quantum_phase_shift(quanta_field->raycast->beam_angle));
+	if (phase_increment <= wavefront_phase)
+		quanta_field->raycast->ray_length = phase_increment;
+	else
+	{
+		quanta_field->raycast->ray_length = wavefront_phase;
+		quanta_field->raycast->hit_type = 1;
+	}
+	return (quanta_field->raycast->ray_length);
 }
 
- void   analyze_planar_intersections(t_graphics *quanta_field, t_castray *quantum_state)
+int	is_wall(float pos_x, float pos_y, t_graphics *gfx)
 {
-    double  y_step, x_step;
-    double  x_check, y_check;
-    int     map_x, map_y;
+	int	grid_x;
+	int	grid_y;
 
-    y_step = MAP_BLOCK_LEN;
-    if (sin(quantum_state->beam_angle) > 0)
-        y_check = (int)(quanta_field->player->pos_y / MAP_BLOCK_LEN) * MAP_BLOCK_LEN + MAP_BLOCK_LEN;
-    else
-    {
-        y_check = (int)(quanta_field->player->pos_y / MAP_BLOCK_LEN) * MAP_BLOCK_LEN - 0.001;
-        y_step *= -1;
-    }
-
-    x_step = MAP_BLOCK_LEN / tan(quantum_state->beam_angle);
-    x_check = quanta_field->player->pos_x + (y_check - quanta_field->player->pos_y) / tan(quantum_state->beam_angle);
-
-    while (1)
-    {
-        map_x = (int)(x_check / MAP_BLOCK_LEN);
-        map_y = (int)(y_check / MAP_BLOCK_LEN);
-
-        if (map_x < 0 || map_y < 0 || map_x >= quanta_field->data->nb_cols || map_y >= quanta_field->data->nb_lines)
-        {
-            quantum_state->intrsxn_x_horz = -1;
-            quantum_state->intrsxn_y_horz = -1;
-            return;
-        }
-
-        if (quanta_field->data->map_grid[map_y][map_x] == '1')
-        {
-            quantum_state->intrsxn_x_horz = x_check;
-            quantum_state->intrsxn_y_horz = y_check;
-            return;
-        }
-
-        x_check += x_step;
-        y_check += y_step;
-    }
+	if (pos_x < 0 || pos_y < 0)
+		return (0);
+	grid_x = floor(pos_x / MAP_BLOCK_LEN);
+	grid_y = floor(pos_y / MAP_BLOCK_LEN);
+	if ((grid_y >= gfx->data->map_height || grid_x >= gfx->data->map_width))
+		return (0);
+	if (gfx->data->map_grid[grid_y]
+		&& grid_x <= (int)ft_strlen(gfx->data->map_grid[grid_y]))
+		if (gfx->data->map_grid[grid_y][grid_x] == '1')
+			return (0);
+	return (1);
 }
 
-void    analyze_axial_intersections(t_graphics *quanta_field, t_castray *quantum_state)
+int	in_quadrant(float radians, char axis)
 {
-    double  x_step, y_step;
-    double  x_check, y_check;
-    int     map_x, map_y;
+	if (axis == 'x')
+	{
+		if (radians > 0 && radians < M_PI)
+			return (1);
+	}
+	else if (axis == 'y')
+	{
+		if (radians > (M_PI / 2) && radians < (3 * M_PI) / 2)
+			return (1);
+	}
+	return (0);
+}
 
-    x_step = MAP_BLOCK_LEN;
-    if (cos(quantum_state->beam_angle) > 0)
-        x_check = (int)(quanta_field->player->pos_x / MAP_BLOCK_LEN) * MAP_BLOCK_LEN + MAP_BLOCK_LEN;
-    else
-    {
-        x_check = (int)(quanta_field->player->pos_x / MAP_BLOCK_LEN) * MAP_BLOCK_LEN - 0.001;
-        x_step *= -1;
-    }
+int	adjust_intersection(double radius, double *pos, double *delta,
+		int is_horizontal)
+{
+	if (is_horizontal)
+	{
+		if (radius > 0 && radius < M_PI)
+		{
+			*pos += MAP_BLOCK_LEN;
+			return (-1);
+		}
+		*delta *= -1;
+	}
+	else
+	{
+		if (!(radius > M_PI / 2 && radius < 3 * M_PI / 2))
+		{
+			*pos += MAP_BLOCK_LEN;
+			return (-1);
+		}
+		*delta *= -1;
+	}
+	return (1);
+}
 
-    y_step = MAP_BLOCK_LEN * tan(quantum_state->beam_angle);
-    y_check = quanta_field->player->pos_y + (x_check - quanta_field->player->pos_x) * tan(quantum_state->beam_angle);
+t_steps	calculate_planar_step_size(float angle)
+{
+	t_steps	steps;
 
-    while (1)
-    {
-        map_x = (int)(x_check / MAP_BLOCK_LEN);
-        map_y = (int)(y_check / MAP_BLOCK_LEN);
+	steps.y_step = MAP_BLOCK_LEN;
+	steps.x_step = MAP_BLOCK_LEN / tan(angle);
+	if ((in_quadrant(angle, 'y') && steps.x_step > 0) || (!in_quadrant(angle,
+				'y') && steps.x_step < 0))
+		steps.x_step *= -1;
+	return (steps);
+}
 
-        if (map_x < 0 || map_y < 0 || map_x >= quanta_field->data->nb_cols || map_y >= quanta_field->data->nb_lines)
-        {
-            quantum_state->intrsxn_x_vert = -1;
-            quantum_state->intrsxn_y_vert = -1;
-            return;
-        }
+double	calculate_initial_intersection_y(t_graphics *gfx)
+{
+	return (floor(gfx->player->pos_y / MAP_BLOCK_LEN) * MAP_BLOCK_LEN);
+}
 
-        if (quanta_field->data->map_grid[map_y][map_x] == '1')
-        {
-            quantum_state->intrsxn_x_vert = x_check;
-            quantum_state->intrsxn_y_vert = y_check;
-            return;
-        }
+double	calculate_initial_intersection_x(t_graphics *gfx, double y_check,
+		float angle)
+{
+	return (gfx->player->pos_x + (y_check - gfx->player->pos_y) / tan(angle));
+}
 
-        x_check += x_step;
-        y_check += y_step;
-    }
+void	trace_planar_ray(double *x_check, double *y_check, t_steps steps,
+		t_graphics *gfx)
+{
+	while (is_wall(*x_check, *y_check, gfx))
+	{
+		*x_check += steps.x_step;
+		*y_check += steps.y_step;
+	}
+}
+
+float	analyze_planar_intersections(t_graphics *gfx, float angle)
+{
+	double	x_check;
+	double	y_check;
+	t_steps	steps;
+	int		draw_start;
+
+	y_check = calculate_initial_intersection_y(gfx);
+	steps = calculate_planar_step_size(angle);
+	draw_start = adjust_intersection(angle, &y_check, &steps.y_step, 1);
+	y_check -= draw_start;
+	x_check = calculate_initial_intersection_x(gfx, y_check, angle);
+	trace_planar_ray(&x_check, &y_check, steps, gfx);
+	gfx->raycast->intrsxn_x_horz = x_check;
+	gfx->raycast->intrsxn_y_horz = y_check;
+	return (sqrt(pow(x_check - gfx->player->pos_x, 2) + pow(y_check
+				- gfx->player->pos_y, 2)));
+}
+
+t_steps	calculate_step_size(float angle)
+{
+	t_steps	steps;
+
+	steps.x_step = MAP_BLOCK_LEN;
+	steps.y_step = MAP_BLOCK_LEN * tan(angle);
+	if ((in_quadrant(angle, 'x') && steps.y_step < 0) || (!in_quadrant(angle,
+				'x') && steps.y_step > 0))
+		steps.y_step *= -1;
+	return (steps);
+}
+
+double	calculate_initial_intersection_x1(t_graphics *gfx)
+{
+	return (floor(gfx->player->pos_x / MAP_BLOCK_LEN) * MAP_BLOCK_LEN);
+}
+
+double	calculate_initial_intersection_y1(t_graphics *gfx, double x_check,
+		float angle)
+{
+	return (gfx->player->pos_y + (x_check - gfx->player->pos_x) * tan(angle));
+}
+
+void	trace_ray(double *x_check, double *y_check, t_steps steps,
+		t_graphics *gfx)
+{
+	while (is_wall(*x_check, *y_check, gfx))
+	{
+		*x_check += steps.x_step;
+		*y_check += steps.y_step;
+	}
+}
+
+float	analyze_axial_intersections(t_graphics *gfx, float angle)
+{
+	double	x_check;
+	double	y_check;
+	t_steps	steps;
+	int		draw_start;
+
+	x_check = calculate_initial_intersection_x1(gfx);
+	steps = calculate_step_size(angle);
+	draw_start = adjust_intersection(angle, &x_check, &steps.x_step, 0);
+	x_check -= draw_start;
+	y_check = calculate_initial_intersection_y1(gfx, x_check, angle);
+	trace_ray(&x_check, &y_check, steps, gfx);
+	gfx->raycast->intrsxn_x_vert = x_check;
+	gfx->raycast->intrsxn_y_vert = y_check;
+	return (sqrt(pow(x_check - gfx->player->pos_x, 2) + pow(y_check
+				- gfx->player->pos_y, 2)));
 }
