@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 05:32:04 by abekri           ###   ########.fr       */
+/*   Updated: 2024/09/07 07:06:47 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@
 # define WIDTH 1920
 # define MAP_BLOCK_LEN 64
 
-typedef struct	s_steps
+typedef struct s_steps
 {
-	double	x_step;
-	double	y_step;
-}				t_steps;
+	double				x_step;
+	double				y_step;
+}						t_steps;
 
 // preparing thr structs for the game
 typedef struct s_gamer
@@ -206,4 +206,6 @@ void					draw_wall(t_graphics *mlx, int t_pix, int b_pix,
 							double wall_h);
 void					place_pixel(t_graphics *graphics, int pos_x, int pos_y,
 							int color_value);
+int						skip_whitespace(char *current_line, int start_index);
+int						is_valid_png_path(const char *path);
 #endif

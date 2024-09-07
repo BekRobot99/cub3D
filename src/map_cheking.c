@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_cheking.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amohame2 <amohame2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 04:09:41 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/05 14:59:05 by amohame2         ###   ########.fr       */
+/*   Updated: 2024/09/07 07:02:16 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	validate_txtr_clr_list(char **texture_path, int texture_len)
 	int	index;
 
 	index = 0;
-	if (texture_len != 6) //(NO || SO || WE || EA || F OR C)
+	if (texture_len != 6)
 		return (0);
 	while (index < texture_len)
 	{
