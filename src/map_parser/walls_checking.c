@@ -6,47 +6,42 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:28:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:17:11 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 19:09:21 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	validate_map_line(char *current_line, int *char_count)
+int	validate_map_line(char *current_line, int *char_count)//
 {
 	int	index;
 
 	index = 0;
 	while (current_line[index])
 	{
-		if (((current_line[index] != ' ' && current_line[index] != '0'
-					&& current_line[index] != '1'
-					&& current_line[index] != '\n')
-				&& !(current_line[index] == 'N' || current_line[index] == 'S'
-					|| current_line[index] == 'W'
-					|| current_line[index] == 'E'))
-			|| (current_line[index] == 'N' || current_line[index] == 'S'
+		if ((current_line[index] != ' ' && current_line[index] != '0'
+				&& current_line[index] != '1' && current_line[index] != '\n')
+			&& !(current_line[index] == 'N' || current_line[index] == 'S'
 				|| current_line[index] == 'W' || current_line[index] == 'E'))
-		{
-			if (current_line[index] == 'N' || current_line[index] == 'S'
-				|| current_line[index] == 'W' || current_line[index] == 'E')
-				(*char_count)++;
-			else
-				return (0);
-		}
+			return (0);
+		else if (current_line[index] == 'N' || current_line[index] == 'S'
+			|| current_line[index] == 'W' || current_line[index] == 'E')
+			(*char_count)++;
 		index++;
 	}
 	return (1);
 }
 
-int	is_boundered_by_walls(char *current_line)
+int	is_boundered_by_walls(char *current_line)//
 {
+	size_t	len;
+
 	while (*current_line == ' ' || *current_line == '\t'
 		|| *current_line == '\n' || *current_line == '\v'
 		|| *current_line == '\f' || *current_line == '\r')
 		current_line++;
-	if (*current_line != '1'
-		|| current_line[ft_strlen(current_line) - 1] != '1')
+	len = ft_strlen(current_line);
+	if (len == 0 || *current_line != '1' || current_line[len - 1] != '1')
 		return (0);
 	return (1);
 }

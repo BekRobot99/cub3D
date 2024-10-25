@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:02:12 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:17:01 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 19:11:42 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_texture_list(t_texture **list_head)
+void	free_texture_list(t_texture **list_head)//
 {
 	t_texture	*current_node;
 
@@ -28,7 +28,7 @@ void	free_texture_list(t_texture **list_head)
 	free(*list_head);
 }
 
-void	cleanup_map_data(t_cub *info)
+void	cleanup_map_data(t_cub *info)//
 {
 	free_str_array(info->square_map);
 	free_str_array(info->map_grid);
@@ -39,7 +39,7 @@ void	cleanup_map_data(t_cub *info)
 		free_str_array(info->ceiling_clr);
 }
 
-char	*fetch_final_map_line(char **raw_map_data)
+char	*fetch_final_map_line(char **raw_map_data)//
 {
 	int	index;
 
@@ -49,7 +49,7 @@ char	*fetch_final_map_line(char **raw_map_data)
 	return (raw_map_data[index - 1]);
 }
 
-int	is_line_bordered_by_one(char *current_line)
+int	is_line_bordered_by_one(char *current_line)//
 {
 	int	index;
 
@@ -63,7 +63,7 @@ int	is_line_bordered_by_one(char *current_line)
 	return (1);
 }
 
-int	validate_map_edges(char **raw_map_data)
+int	validate_map_edges(char **raw_map_data)//
 {
 	if (!raw_map_data[0])
 	{

@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 06:59:24 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:15:58 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 17:21:03 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	check_horizontal_walls(char **raw_map_data)
+int	check_horizontal_walls(char **raw_map_data)//
 {
 	int	row;
 	int	col;
@@ -39,7 +39,7 @@ int	check_horizontal_walls(char **raw_map_data)
 	return (1);
 }
 
-int	check_vertical_walls(char **raw_map_data)
+int	check_vertical_walls(char **raw_map_data)//
 {
 	int	col;
 	int	row;
@@ -66,7 +66,7 @@ int	check_vertical_walls(char **raw_map_data)
 	return (1);
 }
 
-char	*pad_map_line(char *current_line, int max_line_size)
+char	*pad_map_line(char *current_line, int max_line_size)//
 {
 	int		line_index;
 	char	*new_line;
@@ -89,7 +89,7 @@ char	*pad_map_line(char *current_line, int max_line_size)
 	return (new_line);
 }
 
-int	count_map_lines(char **raw_map_data)
+int	count_map_lines(char **raw_map_data)//
 {
 	int	line_index;
 

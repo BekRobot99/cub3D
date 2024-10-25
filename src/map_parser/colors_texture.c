@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 01:42:54 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:15:47 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 18:53:54 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	validate_rgb_values(char **colors)
+int	validate_rgb_values(char **colors)//
 {
 	int	component_index;
 
@@ -27,7 +27,7 @@ int	validate_rgb_values(char **colors)
 	return (free_str_array(colors), 1);
 }
 
-void	apply_colors(t_texture *current_texture, t_cub *info)
+void	apply_colors(t_texture *current_texture, t_cub *info)//
 {
 	if (!ft_strncmp(current_texture->ident, "C", 2))
 	{
@@ -41,7 +41,8 @@ void	apply_colors(t_texture *current_texture, t_cub *info)
 	}
 }
 
-int	process_texture_colors(t_cub *info, t_texture *texture_list)
+
+int	process_texture_colors(t_cub *info, t_texture *texture_list)//
 {
 	t_texture	*current_texture;
 
@@ -55,7 +56,7 @@ int	process_texture_colors(t_cub *info, t_texture *texture_list)
 		{
 			if (!validate_rgb_values(ft_split(current_texture->path, ',')))
 			{
-				ft_putstr_fd("Error: incorrect rgb colors\n", 2);
+				write(1, "Error\ninvalid RGBA color\n", 26);
 				return (0);
 			}
 			apply_colors(current_texture, info);

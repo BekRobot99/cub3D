@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:03:42 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:17:08 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 18:12:21 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_valid_png_path(const char *path)
 	return (extension && strcmp(extension, ".png") == 0);
 }
 
-int	skip_whitespace(char *current_line, int start_index)
+int	skip_whitespace(char *current_line, int start_index)//
 {
 	while (current_line[start_index] == ' '
 		|| current_line[start_index] == '\t'
@@ -33,20 +33,28 @@ int	skip_whitespace(char *current_line, int start_index)
 	return (start_index);
 }
 
-char	*skip_leading_whitespace(char *current_line)
+void	skip_leading_whitespace(char **current_line)// rebuilt
 {
-	while (*current_line == ' ' || *current_line == '\t'
-		|| *current_line == '\n' || *current_line == '\v'
-		|| *current_line == '\f' || *current_line == '\r')
+	while (**current_line == ' ' || **current_line == '\t'
+		|| **current_line == '\n' || **current_line == '\v'
+		|| **current_line == '\f' || **current_line == '\r')
 	{
-		current_line++;
+		(*current_line)++;
 	}
-	return (current_line);
 }
 
-void	extract_cardinal_texture(t_texture *texture, char *current_line)
+char	*extract_cardinal_texture(char *current_line)//rebuilt
 {
-	texture->ident = ft_substr(current_line, 0, 2);
-	texture->path = ft_substr(current_line, skip_whitespace(current_line, 2),
-			ft_strlen(current_line));
+	if (!ft_strncmp(current_line, "WE", 2) || !ft_strncmp(current_line, "EA", 2)
+		|| !ft_strncmp(current_line, "NO", 2) || !ft_strncmp(current_line, "SO",
+			2))
+	{
+		return (ft_substr(current_line, 0, 2));
+	}
+	else if (!ft_strncmp(current_line, "F", 1) || !ft_strncmp(current_line, "C",
+			1))
+	{
+		return (ft_substr(current_line, 0, 1));
+	}
+	return (NULL);
 }

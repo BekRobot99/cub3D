@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:47:12 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:15:54 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 17:21:49 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	find_max_line_length(char **raw_map_data)
+int	find_max_line_length(char **raw_map_data)//
 {
 	int	max_line_size;
 	int	line_index;
@@ -21,20 +21,20 @@ int	find_max_line_length(char **raw_map_data)
 	max_line_size = ft_strlen(raw_map_data[0]);
 	while (raw_map_data[line_index])
 	{
-		if (max_line_size < (int)ft_strlen(raw_map_data[line_index]))
+		if ((int)ft_strlen(raw_map_data[line_index]) > max_line_size)
 			max_line_size = ft_strlen(raw_map_data[line_index]);
 		line_index++;
 	}
 	return (max_line_size);
 }
 
-int	initialize_square_map(t_cub *info, int max_line_size)
+int	initialize_square_map(t_cub *info, int max_line_size)//
 {
 	int	line_idx;
 
 	line_idx = 0;
-	info->square_map = ft_calloc(sizeof(char *),
-			(count_map_lines(info->map_grid) + 1));
+	info->square_map = ft_calloc(sizeof(char *), (count_map_lines(info->map_grid)
+				+ 1));
 	if (!info->square_map)
 		return (0);
 	while (info->map_grid[line_idx])
@@ -50,7 +50,7 @@ int	initialize_square_map(t_cub *info, int max_line_size)
 	return (1);
 }
 
-int	validate_square_map(t_cub *info)
+int	validate_square_map(t_cub *info)//
 {
 	info->map_height = count_map_lines(info->square_map);
 	info->map_width = ft_strlen(info->square_map[0]);
@@ -62,7 +62,7 @@ int	validate_square_map(t_cub *info)
 	return (1);
 }
 
-int	check_and_format_map(t_cub *info)
+int	check_and_format_map(t_cub *info)//
 {
 	int	max_line_size;
 

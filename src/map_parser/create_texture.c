@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:14:13 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:15:51 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 18:55:49 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,42 @@ int	initialize_texture(t_texture *texture, char **parts)
 	return (texture->ident && texture->path);
 }
 
-t_texture	*create_texture(char *path)
+// t_texture	*create_texture(char *path) //rebuilt
+// {
+// 	t_texture	*new_texture;
+// 	char		**parts;
+
+// 	new_texture = allocate_texture();
+// 	if (!new_texture)
+// 		return (NULL);
+// 	split_and_validate_path(path);
+// 	if (!parts || (check_texture_type(parts[0])
+// 			&& !validate_texture_path(parts[1])))
+// 	{
+// 		free(new_texture);
+// 		if (parts)
+// 			free_str_array(parts);
+// 		return (NULL);
+// 	}
+// 	if (!initialize_texture(new_texture, parts))
+// 	{
+// 		free(new_texture);
+// 		free_str_array(parts);
+// 		return (NULL);
+// 	}
+// 	free_str_array(parts);
+// 	return (new_texture);
+// }
+
+t_texture	*create_texture(char *path)//rebuilt
 {
 	t_texture	*new_texture;
-	char		**parts;
 
 	new_texture = allocate_texture();
 	if (!new_texture)
 		return (NULL);
-	parts = split_and_validate_path(path);
-	if (!parts || (check_texture_type(parts[0])
-			&& !validate_texture_path(parts[1])))
-	{
-		free(new_texture);
-		if (parts)
-			free_str_array(parts);
-		return (NULL);
-	}
-	if (!initialize_texture(new_texture, parts))
-	{
-		free(new_texture);
-		free_str_array(parts);
-		return (NULL);
-	}
-	free_str_array(parts);
+	skip_leading_whitespace(&path);
+	new_texture->ident = extract_cardinal_texture(path);
+	new_texture->path = extract_floor_ceiling_texture(path, new_texture->ident);
 	return (new_texture);
 }

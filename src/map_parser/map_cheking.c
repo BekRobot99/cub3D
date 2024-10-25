@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 04:09:41 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:16:18 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 19:04:50 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	verify_element_dup(t_cub *info)
+int	verify_element_dup(t_cub *info)//
 {
 	int	ptr;
 	int	index;
@@ -37,7 +37,7 @@ int	verify_element_dup(t_cub *info)
 	return (1);
 }
 
-int	is_valid_texture_or_color(char *current_line)
+int	is_valid_texture_or_color(char *current_line)//
 {
 	while (*current_line == ' ' || *current_line == '\t'
 		|| *current_line == '\n' || *current_line == '\v'
@@ -59,7 +59,7 @@ int	is_valid_texture_or_color(char *current_line)
 	return (0);
 }
 
-int	validate_txtr_clr_list(char **texture_path, int texture_len)
+int	validate_txtr_clr_list(char **texture_path, int texture_len)//
 {
 	int	index;
 
@@ -79,7 +79,7 @@ int	validate_txtr_clr_list(char **texture_path, int texture_len)
 	return (1);
 }
 
-char	*read_map_content(t_cub *info)
+char	*read_map_content(t_cub *info)//
 {
 	info->raw_map_data = ft_strdup("");
 	while (info->current_line)
@@ -97,7 +97,7 @@ char	*read_map_content(t_cub *info)
 	return (info->raw_map_data);
 }
 
-int	parse_map_data(t_cub *info, int count)
+int	parse_map_data(t_cub *info, int count)//
 {
 	info->raw_map_data = read_map_content(info);
 	if (!info->raw_map_data)

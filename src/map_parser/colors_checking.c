@@ -6,31 +6,31 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 15:30:22 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:15:41 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 19:13:01 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	validate_line_content(char *current_line)
+int	validate_line_content(char *current_line) //
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (current_line[i])
 	{
 		if ((!ft_isdigit(current_line[i]) && current_line[i] != ',')
-			|| (current_line[i] == ',' && current_line[i + 1] && current_line[i
-					+ 1] == ','))
+			|| (current_line[i] == ',' && current_line[i + 1]
+				&& current_line[i + 1] == ','))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	is_valid_color_format(char *current_line)
+int	is_valid_color_format(char *current_line) //
 {
-	int	flag;
+	int flag;
 
 	flag = 0;
 	if (!check_and_update_flag(&current_line, &flag))
@@ -42,10 +42,10 @@ int	is_valid_color_format(char *current_line)
 	return (1);
 }
 
-int	commas_qntt(char *colors)
+int	commas_qntt(char *colors) //
 {
-	int	i;
-	int	qntt;
+	int i;
+	int qntt;
 
 	i = 0;
 	qntt = 0;
@@ -55,10 +55,10 @@ int	commas_qntt(char *colors)
 	return (qntt);
 }
 
-int	check_colors(char **texture_paths)
+int	check_colors(char **texture_paths) //
 {
-	char	*tmp;
-	int		index;
+	char *tmp;
+	int index;
 
 	index = 0;
 	while (texture_paths[index])

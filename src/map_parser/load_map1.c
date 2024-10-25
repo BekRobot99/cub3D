@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:01:14 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:16:09 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/23 20:08:24 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_str_array(char *array[])
+void	free_str_array(char *array[])//
 {
 	int	index;
 
@@ -22,27 +22,27 @@ void	free_str_array(char *array[])
 	free(array);
 }
 
-void	cleanup_resources(char *texture_path, char *current_line, int fd)
+void	cleanup_resources(char *texture_path, char *current_line, int fd)//
 {
 	if (current_line)
 		free(current_line);
 	if (texture_path)
 		free(texture_path);
 	if (fd > 0)
-		close(fd);
+		close (fd);
 }
 
-int	validate_textures(t_cub *info, int texture_len)
-{
-	if (texture_len < 6 || texture_len > 6)
-	{
-		ft_putstr_fd("Error: in color or texture identifier\n", 2);
-		free(info->texture_path);
-		free(info->texture_path);
-		return (0);
-	}
-	return (1);
-}
+// int	validate_textures(t_cub *info, int texture_len)
+// {
+// 	if (texture_len < 6 || texture_len > 6)
+// 	{
+// 		ft_putstr_fd("Error: in color or texture identifier\n", 2);
+// 		free(info->texture_path);
+// 		free(info->texture_path);
+// 		return (0);
+// 	}
+// 	return (1);
+// }
 
 int	is_valid_txtr_color(char *line)
 {

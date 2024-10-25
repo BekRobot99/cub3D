@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 09:28:46 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 18:12:32 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ typedef struct s_cub
 	char				**ceiling_clr;
 	char				*current_line;
 	t_texture			*texture;
-	uint32_t			ceiling_color;
-	uint32_t			floor_color;
 }						t_cub;
 
 typedef struct s_graphics
@@ -120,6 +118,7 @@ typedef struct s_graphics
 	mouse_mode_t		mouse_mode;
 	t_castray			*raycast;
 }						t_graphics;
+
 char					*get_next_line(int fd);
 
 void					free_str_array(char *array[]);
@@ -225,4 +224,7 @@ int						adjust_intersection(double radius, double *pos,
 							double *delta, int is_horizontal);
 int						ft_strcmp(const char *s1, const char *s2);
 
+char					*extract_cardinal_texture(char *current_line);
+void					skip_leading_whitespace(char **current_line);
+char					*extract_floor_ceiling_texture(char *current_line, char *key);
 #endif
