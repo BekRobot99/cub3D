@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/27 15:45:03 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 19:20:38 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,13 @@ int						ft_strcmp(const char *s1, const char *s2);
 
 char					*extract_cardinal_texture(char *current_line);
 void					skip_leading_whitespace(char **current_line);
-char					*extract_floor_ceiling_texture(char *current_line, char *key);
+char					*extract_floor_ceiling_texture(char *current_line,
+							char *key);
 void					set_player_direction(t_graphics *graf);
+void					handle_key_press(mlx_key_data_t indent_info,
+							t_graphics *gfx);
+void					handle_move_up_down(mlx_key_data_t indent_info,
+							t_graphics *gfx);
+void					handle_move_left_right(mlx_key_data_t indent_info,
+							t_graphics *gfx);
 #endif

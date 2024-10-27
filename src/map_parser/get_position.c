@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 02:18:56 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/25 18:58:17 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:50:43 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
-int	is_valid_cub_ext(char *filename)//
+int	is_valid_cub_ext(char *filename)
 {
 	char	*extension;
 
@@ -37,7 +37,7 @@ int	is_valid_cub_ext(char *filename)//
 	return (0);
 }
 
-void	find_player_position(t_cub *info)//
+void	find_player_position(t_cub *info)
 {
 	int	col_idx;
 	int	row_idx;
@@ -61,7 +61,7 @@ void	find_player_position(t_cub *info)//
 	}
 }
 
-void	calculate_map_dimensions(t_cub *info)//
+void	calculate_map_dimensions(t_cub *info)
 {
 	int	row_idx;
 	int	col_idx;

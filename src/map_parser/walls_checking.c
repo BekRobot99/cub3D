@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 16:28:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/25 19:09:21 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:56:57 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	validate_map_line(char *current_line, int *char_count)//
+int	validate_map_line(char *current_line, int *char_count)
 {
 	int	index;
 
@@ -32,7 +32,7 @@ int	validate_map_line(char *current_line, int *char_count)//
 	return (1);
 }
 
-int	is_boundered_by_walls(char *current_line)//
+int	is_boundered_by_walls(char *current_line)
 {
 	size_t	len;
 

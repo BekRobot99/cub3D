@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:48:30 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/27 18:16:02 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:40:33 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,7 @@ void	trace_ray(double *x_check, double *y_check, t_steps steps,
 	}
 }
 
-// float	analyze_axial_intersections(t_graphics *gfx, float angle)
-// {
-// 	double	x_check;
-// 	double	y_check;
-// 	t_steps	steps;
-// 	int		draw_start;
-
-// 	x_check = calculate_initial_intersection_x1(gfx);
-// 	steps = calculate_step_size(angle);
-// 	draw_start = adjust_intersection(angle, &x_check, &steps.x_step, 0);
-// 	x_check -= draw_start;
-// 	y_check = calculate_initial_intersection_y1(gfx, x_check, angle);
-// 	trace_ray(&x_check, &y_check, steps, gfx);
-// 	gfx->raycast->intrsxn_x_vert = x_check;
-// 	gfx->raycast->intrsxn_y_vert = y_check;
-// 	return (sqrt(pow(x_check - gfx->player->pos_x, 2) + pow(y_check
-// 				- gfx->player->pos_y, 2)));
-// }
-
-float	analyze_axial_intersections(t_graphics *gfx, float angl)//recoded
+float	analyze_axial_intersections(t_graphics *gfx, float angl)
 {
 	double	x_check;
 	double	y_check;
@@ -86,6 +67,6 @@ float	analyze_axial_intersections(t_graphics *gfx, float angl)//recoded
 	}
 	gfx->raycast->intrsxn_x_vert = x_check;
 	gfx->raycast->intrsxn_y_vert = y_check;
-	return (sqrt(pow(x_check - gfx->player->pos_x, 2) + pow(y_check - gfx->player->pos_y,
-				2)));
+	return (sqrt(pow(x_check - gfx->player->pos_x, 2) + pow(y_check
+				- gfx->player->pos_y, 2)));
 }

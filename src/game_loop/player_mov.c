@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 05:04:35 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/27 18:03:23 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:43:24 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define RATE_ROT 0.1
 
 void	handle_horizontal_movement(t_graphics *graf, double *xoffset,
-		double *yoffset)//
+		double *yoffset)
 {
 	if (graf->player->move_lt_rt == -1)
 	{
@@ -30,7 +30,7 @@ void	handle_horizontal_movement(t_graphics *graf, double *xoffset,
 }
 
 void	handle_vertical_movement(t_graphics *graf, double *xoffset,
-		double *yoffset)//
+		double *yoffset)
 {
 	if (graf->player->move_up_dwn == 1)
 	{
@@ -44,7 +44,7 @@ void	handle_vertical_movement(t_graphics *graf, double *xoffset,
 	}
 }
 
-void	handle_rotation(t_graphics *graf)//
+void	handle_rotation(t_graphics *graf)
 {
 	if (graf->player->dir_rotation == 1)
 		adjust_player_rotation(graf, 1);
@@ -52,7 +52,7 @@ void	handle_rotation(t_graphics *graf)//
 		adjust_player_rotation(graf, 0);
 }
 
-void	handle_player_movement(t_graphics *graf, double xoffset, double yoffset)//
+void	handle_player_movement(t_graphics *graf, double xoffset, double yoffset)
 {
 	handle_vertical_movement(graf, &xoffset, &yoffset);
 	handle_horizontal_movement(graf, &xoffset, &yoffset);
@@ -60,7 +60,7 @@ void	handle_player_movement(t_graphics *graf, double xoffset, double yoffset)//
 	update_player_position(graf, xoffset, yoffset);
 }
 
-void	draw_game(void *mlxl)//fixed all the functions
+void	draw_game(void *mlxl)
 {
 	t_graphics	*graf;
 

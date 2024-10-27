@@ -6,14 +6,14 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 19:05:42 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/25 18:17:34 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:56:28 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 #include <string.h>
 
-t_texture	*allocate_texture(void)//
+t_texture	*allocate_texture(void)
 {
 	t_texture	*new_texture;
 
@@ -26,7 +26,7 @@ t_texture	*allocate_texture(void)//
 	return (new_texture);
 }
 
-char	*extract_floor_ceiling_texture(char *current_line, char *key)// 
+char	*extract_floor_ceiling_texture(char *current_line, char *key)
 {
 	if (!key)
 		return (NULL);
@@ -39,7 +39,7 @@ char	*extract_floor_ceiling_texture(char *current_line, char *key)//
 	return (NULL);
 }
 
-void	append_texture(t_texture **texture_list, t_texture *new_texture)// rebuild
+void	append_texture(t_texture **texture_list, t_texture *new_texture)
 {
 	t_texture	*current;
 
@@ -54,7 +54,7 @@ void	append_texture(t_texture **texture_list, t_texture *new_texture)// rebuild
 	current->next = new_texture;
 }
 
-int	build_texture_list(t_cub *info, t_texture **texture_list)// rebuild
+int	build_texture_list(t_cub *info, t_texture **texture_list)
 {
 	int			path_index;
 	t_texture	*new_texture;
