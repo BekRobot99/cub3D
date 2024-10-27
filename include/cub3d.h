@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:07:07 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/25 18:12:32 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 15:45:03 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void					emit_photon_array(t_graphics *quanta_field);
 double					trace_photon_path(t_graphics *quanta_field);
 double					calculate_euclidean_norm(mlx_texture_t *texture,
 							t_graphics *mlx);
-double					quantum_phase_shift(double phase);
+float					quantum_phase_shift(float phase);
 
 void					ft_delete_tex(t_texture *texture);
 void					draw_game(void *mlxl);
@@ -227,4 +227,5 @@ int						ft_strcmp(const char *s1, const char *s2);
 char					*extract_cardinal_texture(char *current_line);
 void					skip_leading_whitespace(char **current_line);
 char					*extract_floor_ceiling_texture(char *current_line, char *key);
+void					set_player_direction(t_graphics *graf);
 #endif

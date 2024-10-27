@@ -6,13 +6,13 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 07:52:18 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 08:15:17 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:00:04 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-double	trace_photon_path(t_graphics *quanta_field)
+double	trace_photon_path(t_graphics *quanta_field)//
 {
 	double	wavefront_phase;
 	double	phase_increment;
@@ -32,7 +32,7 @@ double	trace_photon_path(t_graphics *quanta_field)
 	return (quanta_field->raycast->ray_length);
 }
 
-int	is_wall(float pos_x, float pos_y, t_graphics *gfx)
+int	is_wall(float pos_x, float pos_y, t_graphics *gfx)//
 {
 	int	grid_x;
 	int	grid_y;
@@ -43,14 +43,13 @@ int	is_wall(float pos_x, float pos_y, t_graphics *gfx)
 	grid_y = floor(pos_y / MAP_BLOCK_LEN);
 	if ((grid_y >= gfx->data->map_height || grid_x >= gfx->data->map_width))
 		return (0);
-	if (gfx->data->map_grid[grid_y]
-		&& grid_x <= (int)ft_strlen(gfx->data->map_grid[grid_y]))
+	if (gfx->data->map_grid[grid_y] && grid_x <= (int)ft_strlen(gfx->data->map_grid[grid_y]))
 		if (gfx->data->map_grid[grid_y][grid_x] == '1')
 			return (0);
 	return (1);
 }
 
-int	in_quadrant(float radians, char axis)
+int	in_quadrant(float radians, char axis)//
 {
 	if (axis == 'x')
 	{
@@ -66,7 +65,7 @@ int	in_quadrant(float radians, char axis)
 }
 
 int	adjust_intersection(double radius, double *pos, double *delta,
-		int is_horizontal)
+		int is_horizontal)// fixed
 {
 	if (is_horizontal)
 	{

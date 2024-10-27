@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:10:33 by abekri            #+#    #+#             */
-/*   Updated: 2024/10/25 19:00:07 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:06:19 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	setup_graphics(t_cub *cub, t_graphics *graf)//
 {
 	if (!cub->texture || WIDTH > 2600 || HEIGHT > 1500 || FOV <= 0
 		|| FOV >= 180)
-		return (freelist(&cub->texture), free_map(cub), 0);
+		return (free_texture_list(&cub->texture), cleanup_map_data(cub), 0);
 	graf->player = (t_gamer *)ft_calloc(sizeof(t_gamer), 1);
 	graf->raycast = (t_castray *)ft_calloc(sizeof(t_castray), 1);
 	graf->texture = (t_texture *)ft_calloc(sizeof(t_texture), 1);

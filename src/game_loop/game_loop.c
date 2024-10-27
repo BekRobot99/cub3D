@@ -6,7 +6,7 @@
 /*   By: abekri <abekri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 02:45:23 by abekri            #+#    #+#             */
-/*   Updated: 2024/09/07 07:27:01 by abekri           ###   ########.fr       */
+/*   Updated: 2024/10/25 20:24:02 by abekri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	file_exists(const char *path)
 	return (stat(path, &buffer) == 0);
 }
 
-int	valid_txtr_paths(t_texture *texture_list)
+int	valid_txtr_paths(t_texture *texture_list)//
 {
 	t_texture		*current_texture;
 	mlx_texture_t	*loaded_texture;
@@ -43,7 +43,7 @@ int	valid_txtr_paths(t_texture *texture_list)
 	return (1);
 }
 
-int	init_textures(t_texture *texture, t_texture *texture_list)
+int	init_textures(t_texture *texture, t_texture *texture_list)//used instead of init_game
 {
 	t_texture	*txtr;
 
@@ -52,36 +52,35 @@ int	init_textures(t_texture *texture, t_texture *texture_list)
 		return (0);
 	while (txtr)
 	{
-		if (!ft_strncmp(txtr->ident, "SO", 2))
+		if (!ft_strncmp(txtr->ident, "NO", 2))
+			texture->no = mlx_load_png(txtr->path);
+		else if (!ft_strncmp(txtr->ident, "SO", 2))
 			texture->so = mlx_load_png(txtr->path);
 		else if (!ft_strncmp(txtr->ident, "WE", 2))
 			texture->we = mlx_load_png(txtr->path);
 		else if (!ft_strncmp(txtr->ident, "EA", 2))
 			texture->ea = mlx_load_png(txtr->path);
-		else if (!ft_strncmp(txtr->ident, "NO", 2))
-			texture->no = mlx_load_png(txtr->path);
 		txtr = txtr->next;
 	}
 	return (1);
 }
 
-void	ft_exit(t_graphics *graf)
+void	ft_exit(t_graphics *graf)//
 {
 	mlx_delete_image(graf->mlx_ptr, graf->image);
 	mlx_close_window(graf->mlx_ptr);
 	free_texture_list(&graf->data->texture);
 	cleanup_map_data(graf->data);
 	ft_delete_tex(graf->texture);
+	free(graf->texture);
 	free(graf->player);
 	free(graf->raycast);
-	free(graf->texture);
 	mlx_terminate(graf->mlx_ptr);
 	exit(0);
 }
 
-void	ft_delete_tex(t_texture *texture)
+void	ft_delete_tex(t_texture *texture)//
 {
-	(void)texture;
 	if (texture->no)
 		mlx_delete_texture(texture->no);
 	if (texture->so)
